@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salon Linda â Haar & SchÃ¶nheit in Bozen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #3A5A28;
+      --green-light: #5A7A40;
+      --cream: #F7F3EC;
+      --cream-dark: #EDE8DF;
+      --gold: #B8905A;
+      --charcoal: #2A2A2A;
+      --text: #3C3C3C;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ââ DEMO BANNER ââ */
+    .demo-banner {
+      background: var(--charcoal);
+      color: #fff;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .demo-banner span { color: var(--gold); }
+
+    /* ââ NAV ââ */
+    nav {
+      background: var(--cream);
+      border-bottom: 1px solid var(--cream-dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 5%;
+      position: sticky;
+      top: 37px;
+      z-index: 999;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      letter-spacing: 0.04em;
+    }
+    .nav-logo span { color: var(--green); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    /* ââ HERO ââ */
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, var(--charcoal) 0%, #1A2A12 60%, var(--green) 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 80px 5%;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 2px;
+      margin-bottom: 28px;
+    }
+    .hero-tag::before {
+      content: 'ð±';
+      font-size: 0.9rem;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: rgba(184,144,90,0.9);
+    }
+    .hero-sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      font-weight: 500;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: #a07a48; }
+    .btn-outline {
+      background: transparent;
+      color: rgba(255,255,255,0.85);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.08); }
+
+    .hero-badges {
+      position: absolute;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .badge {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      padding: 20px 24px;
+      text-align: center;
+      color: white;
+      width: 140px;
+    }
+    .badge-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .badge-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* ââ SECTION BASE ââ */
+    section { padding: 100px 5%; }
+    .section-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 500;
+      margin-bottom: 14px;
+      display: block;
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      color: var(--charcoal);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    h2 em { font-style: italic; color: var(--green); }
+    .lead {
+      font-size: 1.05rem;
+      color: #666;
+      max-width: 560px;
+      line-height: 1.9;
+    }
+
+    /* ââ STORY ââ */
+    .story {
+      background: var(--white);
+    }
+    .story-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .story-visual {
+      position: relative;
+    }
+    .story-card {
+      background: var(--green);
+      padding: 60px 48px;
+      border-radius: 2px;
+    }
+    .story-card-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.4;
+      margin-bottom: 28px;
+    }
+    .story-card-meta {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .story-accent {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--gold);
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: white;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .story-text { }
+    .story-text .lead { margin-bottom: 32px; }
+    .story-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .pillar {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .pillar-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--cream);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .pillar-title {
+      font-weight: 500;
+      color: var(--charcoal);
+      font-size: 0.9rem;
+      margin-bottom: 3px;
+    }
+    .pillar-desc {
+      font-size: 0.85rem;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* ââ SERVICES ââ */
+    .services {
+      background: var(--cream);
+    }
+    .services-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .services-header .lead { margin: 0 auto; text-align: center; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .service-card {
+      background: var(--white);
+      padding: 48px 36px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+    .service-card:hover { background: var(--green); }
+    .service-card:hover .service-icon { background: rgba(255,255,255,0.15); }
+    .service-card:hover .service-title,
+    .service-card:hover .service-desc { color: white; }
+    .service-card:hover .service-price { color: rgba(255,255,255,0.7); }
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--cream);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin: 0 auto 24px;
+      transition: background 0.3s;
+    }
+    .service-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+      transition: color 0.3s;
+    }
+    .service-desc {
+      font-size: 0.85rem;
+      color: #888;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      transition: color 0.3s;
+    }
+    .service-items {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 24px;
+    }
+    .service-items li {
+      font-size: 0.82rem;
+      color: #999;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--cream-dark);
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .service-card:hover .service-items li { color: rgba(255,255,255,0.65); border-bottom-color: rgba(255,255,255,0.1); }
+    .service-price {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    /* ââ SUSTAINABILITY ââ */
+    .sustainability {
+      background: var(--charcoal);
+      padding: 80px 5%;
+    }
+    .sust-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .sust-inner .section-tag { color: rgba(184,144,90,0.9); }
+    .sust-inner h2 { color: white; }
+    .sust-inner h2 em { color: rgba(184,144,90,0.9); }
+    .sust-inner .lead { color: rgba(255,255,255,0.55); }
+    .sust-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .sust-point {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 24px 20px;
+      border-radius: 2px;
+    }
+    .sust-point-icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .sust-point-title {
+      font-weight: 500;
+      color: white;
+      font-size: 0.88rem;
+      margin-bottom: 6px;
+    }
+    .sust-point-text {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
+
+    /* ââ CONTACT ââ */
+    .contact {
+      background: var(--cream-dark);
+    }
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-info-items {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .contact-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 3px;
+    }
+    .contact-value {
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      font-weight: 400;
+    }
+    .contact-form {
+      background: var(--white);
+      padding: 48px 40px;
+    }
+    .contact-form h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+    .contact-form p {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: 28px;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 7px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--cream-dark);
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      border-radius: 2px;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--green); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .btn-green {
+      background: var(--green);
+      color: white;
+      width: 100%;
+      padding: 15px;
+      font-size: 0.82rem;
+    }
+    .btn-green:hover { background: var(--green-light); }
+
+    /* ââ FOOTER ââ */
+    footer {
+      background: var(--charcoal);
+      padding: 40px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: white;
+      font-weight: 600;
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-note {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.06em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.35);
+      font-size: 0.78rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: white; }
+
+    /* ââ DEMO OVERLAY ââ */
+    .demo-overlay {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--charcoal);
+      color: white;
+      padding: 14px 20px;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      z-index: 9999;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      border-left: 3px solid var(--gold);
+      max-width: 220px;
+      line-height: 1.5;
+    }
+    .demo-overlay strong { color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.7rem; }
+
+    /* ââ RESPONSIVE ââ */
+    @media (max-width: 900px) {
+      .story-inner, .sust-inner, .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .hero-badges { display: none; }
+      nav { flex-direction: column; gap: 16px; }
+      .sust-points { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-banner">
+    â ï¸ <span>Demo-Vorschau</span> â Diese Website wurde als unverbindlicher Entwurf erstellt. Kein offizieller Auftritt von Salon Linda.
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Salon <span>Linda</span></div>
+    <ul class="nav-links">
+      <li><a href="#story">Ãber uns</a></li>
+      <li><a href="#services">Leistungen</a></li>
+      <li><a href="#nachhaltigkeit">Nachhaltigkeit</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-tag">Seit 4 Generationen â Mitten in Bozen</div>
+      <h1>Dein Haar.<br><em>Unsere Leidenschaft.</em></h1>
+      <p class="hero-sub">
+        Farbe, Schnitt und Pflege â mit nachhaltigen Anspruch und dem GefÃ¸hl einer echten Familientradition.
+        Wir stehen fÃ¸r Alternative Hairdesign in Damen &amp; Herren.
+      </p>
+      <div class="hero-cta">
+        <a href="#kontakt" class="btn btn-primary">Termin vereinbaren</a>
+        <a href="#services" class="btn btn-outline">Leistungen entdecken</a>
+      </div>
+    </div>
+
+    <div class="hero-badges">
+      <div class="badge">
+        <span class="badge-number">4</span>
+        <span class="badge-label">Generationen<br>Erfahrung</span>
+      </div>
+      <div class="badge">
+        <span class="badge-number">ð±</span>
+        <span class="badge-label">Nachhaltiger<br>Salon</span>
+      </div>
+      <div class="badge">
+        <span class="badge-number">â¡</span>
+        <span class="badge-label">Herz von<br>Bolzano</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="story" id="story">
+    <div class="story-inner">
+      <div class="story-visual">
+        <div class="story-card">
+          <p class="story-card-quote">âEin kleiner Salon mit groÃem Herz â mitten in Bozen."</p>
+          <p class="story-card-meta">Salon Linda Â· Rauschertorgasse, Bolzano</p>
+        </div>
+        <div class="story-accent">
+          <div>seit<br>4 Gen.</div>
+        </div>
+      </div>
+
+      <div class="story-text">
+        <span class="section-tag">Unsere Geschichte</span>
+        <h2>Bozen kennt uns â <em>seit Generationen</em></h2>
+        <p class="lead">
+          Salon Linda ist mehr als ein Friseursalon. Wir sind Teil der Geschichte dieser Stadt â
+          weitergefÃ¼hrt von Generation zu Generation mit dem gleichen Herzblut und einem wachsenden Bewusstsein fÃ¼r Nachhaltigkeit.
+        </p>
+        <div class="story-pillars">
+          <div class="pillar">
+            <div class="pillar-icon">ð</div>
+            <div>
+              <div class="pillar-title">Nachhaltig & bewusst</div>
+              <div class="pillar-desc">Wir setzen auf nachhaltige Produkte und schonende Verfahren fÃ¼r Haar und Umwelt.</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">âï¸</div>
+            <div>
+              <div class="pillar-title">Alternative Hairdesign</div>
+              <div class="pillar-desc">Kreative Schnitte und Farbkonzepte fÃ¼r Damen und Herren â individuell auf dich abgestimmt.</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">ð¤</div>
+            <div>
+              <div class="pillar-title">FamiliÃ¤re AtmosphÃ¤re</div>
+              <div class="pillar-desc">Bei uns bist du keine Nummer â wir nehmen uns Zeit fÃ¼r dich und deine WÃ¼nsche.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="services-header">
+      <span class="section-tag">Was wir fÃ¼r dich tun</span>
+      <h2>Unsere <em>Leistungen</em></h2>
+      <p class="lead">Vom Schnitt Ã¼ber Farbe bis zur intensiven Haarpflege â alles unter einem Dach.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">âï¸</div>
+        <div class="service-title">Cut</div>
+        <p class="service-desc">PrÃ¤zise Schnitte, die zu dir und deinem Lifestyle passen â fÃ¼r Damen und Herren.</p>
+        <ul class="service-items">
+          <li>Damen-Schnitt</li>
+          <li>Herren-Schnitt</li>
+          <li>Waschen &amp; FÃ¶hnen</li>
+          <li>Styling &amp; Finishing</li>
+        </ul>
+        <span class="service-price">Auf Anfrage</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">ð¨</div>
+        <div class="service-title">Color</div>
+        <p class="service-desc">Von sanften Highlights bis hin zu krÃ¤ftigen FarbverÃ¤nderungen â immer nachhaltig gedacht.</p>
+        <ul class="service-items">
+          <li>Ansatz fÃ¤rben</li>
+          <li>KomplettfÃ¤rbung</li>
+          <li>Highlights / Balayage</li>
+          <li>Colorkorrektur</li>
+        </ul>
+        <span class="service-price">Auf Anfrage</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">ð¿</div>
+        <div class="service-title">Treatment</div>
+        <p class="service-desc">Intensive Pflegebehandlungen, die dein Haar von innen heraus stÃ¤rken und regenerieren.</p>
+        <ul class="service-items">
+          <li>Tiefenpflege-Maske</li>
+          <li>Keratin-Behandlung</li>
+          <li>Kopfhaut-Analyse</li>
+          <li>Regenerations-Kur</li>
+        </ul>
+        <span class="service-price">Auf Anfrage</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUSTAINABILITY -->
+  <section class="sustainability" id="nachhaltigkeit">
+    <div class="sust-inner">
+      <div>
+        <span class="section-tag">Unser Versprechen</span>
+        <h2>SchÃ¶n sein â <em>mit Verantwortung</em></h2>
+        <p class="lead">
+          Nachhaltigkeit ist fÃ¼r uns kein Trend, sondern eine Haltung.
+          Wir wÃ¤hlen Produkte und Methoden bewusst â fÃ¼r dich und fÃ¼r unsere Umwelt.
+        </p>
+      </div>
+      <div class="sust-points">
+        <div class="sust-point">
+          <div class="sust-point-icon">ð±</div>
+          <div class="sust-point-title">Nachhaltige Produkte</div>
+          <div class="sust-point-text">Wir setzen auf Marken mit Ã¶kologischem Anspruch und minimalem Chemie-Einsatz.</div>
+        </div>
+        <div class="sust-point">
+          <div class="sust-point-icon">ð§</div>
+          <div class="sust-point-title">Ressourcenschonung</div>
+          <div class="sust-point-text">Bewusster Umgang mit Wasser und Energie im tÃ¤glichen Betrieb.</div>
+        </div>
+        <div class="sust-point">
+          <div class="sust-point-icon">â»ï¸</div>
+          <div class="sust-point-title">Weniger Abfall</div>
+          <div class="sust-point-text">Minimale Verpackungen, nachfÃ¼llbare Produkte und konsequentes Recycling.</div>
+        </div>
+        <div class="sust-point">
+          <div class="sust-point-icon">ð¤²</div>
+          <div class="sust-point-title">Lokale Gemeinschaft</div>
+          <div class="sust-point-text">Wir engagieren uns fÃ¼r Bozen â weil uns diese Stadt am Herzen liegt.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="kontakt">
+    <div class="contact-inner">
+      <div>
+        <span class="section-tag">Wir sind fÃ¼r dich da</span>
+        <h2>Termin & <em>Kontakt</em></h2>
+        <p class="lead">
+          Besuche uns direkt in der Rauschertorgasse oder ruf uns an â
+          wir freuen uns auf dich.
+        </p>
+        <div class="contact-info-items">
+          <div class="contact-item">
+            <div class="contact-icon">ð</div>
+            <div>
+              <div class="contact-label">Adresse</div>
+              <div class="contact-value">Rauschertorgasse 8a<br>39100 Bozen (BZ), SÃ¼dtirol</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">ð</div>
+            <div>
+              <div class="contact-label">Telefon</div>
+              <div class="contact-value">0471 972 848</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">ð±</div>
+            <div>
+              <div class="contact-label">Instagram</div>
+              <div class="contact-value">@_salonlinda_</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">ð</div>
+            <div>
+              <div class="contact-label">Ãffnungszeiten</div>
+              <div class="contact-value">MoâFr: 9:00 â 18:30 Uhr<br>Sa: 9:00 â 13:00 Uhr</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3>Termin anfragen</h3>
+        <p>Schreib uns einfach â wir melden uns schnell zurÃ¼ck.</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Vorname</label>
+            <input type="text" placeholder="Laura">
+          </div>
+          <div class="form-group">
+            <label>Nachname</label>
+            <input type="text" placeholder="Mayer">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Telefon / WhatsApp</label>
+          <input type="tel" placeholder="+39 333 ...">
+        </div>
+        <div class="form-group">
+          <label>GewÃ¼nschte Leistung</label>
+          <select>
+            <option>Schnitt Damen</option>
+            <option>Schnitt Herren</option>
+            <option>FÃ¤rben / Highlights</option>
+            <option>Treatment / Pflege</option>
+            <option>BeratungsgesprÃ¤ch</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Nachricht (optional)</label>
+          <textarea placeholder="GewÃ¼nschter Termin, besondere WÃ¸nsche ..."></textarea>
+        </div>
+        <button class="btn btn-green">Anfrage senden</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Salon <span>Linda</span></div>
+    <div class="footer-note">Â© 2026 Salon Linda Â· Rauschertorgasse 8a, Bozen Â· Diese Seite ist ein unverbindlicher Demo-Entwurf</div>
+    <div class="footer-links">
+      <a href="#story">Ãber uns</a>
+      <a href="#services">Leistungen</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+  </footer>
+
+  <!-- DEMO OVERLAY -->
+  <div class="demo-overlay">
+    <strong>ð Demo-Vorschau</strong>
+    Unverbindlicher Website-Entwurf fÃ¼r Salon Linda, Bozen.
+  </div>
+
+</body>
+</html>
